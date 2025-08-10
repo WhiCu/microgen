@@ -22,13 +22,26 @@ func AddDependency() error {
 // genCmd represents the gen command
 var genCmd = &cobra.Command{
 	Use:   "gen",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Generate a new Go microservice project",
+	Long: `Generate a complete Go microservice project structure with all necessary 
+components including handlers, services, configuration, and tests.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+The generated project follows the standard Go project layout and includes:
+  • HTTP server setup with Gin framework
+  • Structured configuration management
+  • Service layer architecture
+  • HTTP handlers with proper error handling
+  • Test files with authentication helpers
+  • Client utilities for testing
+  • Task automation with Taskfile
+
+This command creates a production-ready foundation that you can immediately
+start building your business logic upon.`,
+	Example: `  microgen gen -d ./my-service
+  microgen gen --destation ./api-service --tidy
+  microgen gen -d ./user-service -t
+  microgen gen -d ./payment-service --tidy`,
+	Aliases: []string{"generate", "create", "new"},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		err := render.Render(viper.GetString("destation"))
 		if err != nil {
@@ -56,13 +69,13 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// genCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	genCmd.Flags().StringP("destation", "d", "", "Destination directory")
+	genCmd.Flags().StringP("destation", "d", "", "Destination directory for the generated project (default: current directory)")
 	err := viper.BindPFlag("destation", genCmd.Flags().Lookup("destation"))
 	if err != nil {
 		panic(err)
 	}
 
-	genCmd.Flags().BoolP("tidy", "t", false, "Add dependencies to go.mod")
+	genCmd.Flags().BoolP("tidy", "t", false, "Automatically run 'go mod tidy' after generation to manage dependencies")
 	err = viper.BindPFlag("tidy", genCmd.Flags().Lookup("tidy"))
 	if err != nil {
 		panic(err)

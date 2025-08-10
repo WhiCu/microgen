@@ -1,6 +1,5 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -10,21 +9,26 @@ import (
 	"github.com/spf13/cobra"
 )
 
-
-
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "microgen",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "Generate Go microservice project structure with best practices",
+	Long: `MicroGen is a powerful CLI tool for generating Go microservice projects with 
+industry best practices and modern architecture patterns.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+Features:
+  • Pre-configured project structure following Go project layout standards
+  • Built-in templates for HTTP handlers, services, and middleware
+  • Automatic dependency management with go.mod
+  • Configurable destination directories
+  • Clean and maintainable code generation
+
+MicroGen helps developers quickly bootstrap production-ready microservices
+by providing a solid foundation that follows Go community conventions.`,
+	Example: `  microgen gen -d ./my-service
+  microgen gen --destation ./api-service --tidy
+  microgen gen -d ./user-service -t`,
+	Aliases: []string{"mg", "micro"},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -47,5 +51,3 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-
