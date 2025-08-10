@@ -51,21 +51,17 @@ my-service/
 │   ├── config/
 │   │   ├── config.go        # Структуры конфигурации
 │   │   └── load.go          # Загрузка конфигурации
-│   ├── handler/
-│   │   ├── handler.go       # Базовый handler
-│   │   └── ping.go          # Health check endpoint
-│   └── service/
-│       └── service.go       # Бизнес-логика
-├── test/
-│   ├── reg.go              # Тестовые утилиты аутентификации
-│   ├── client/
-│   │   └── client.go        # HTTP клиент для тестов
-│   ├── handler/
-│   │   └── handler.go       # Тесты handlers
-│   └── service/
-│       └── service.go       # Тесты services
+│   └── test/
+│       ├── reg.go           # Регистрация handler
+│       ├── client/
+│       │   └── client.go    # HTTP клиент для тестов
+│       ├── handler/
+│       │   └── handler.go   # Тесты handlers
+│       └── service/
+│           └── service.go   # Тесты services
 ├── go.mod                   # Зависимости Go
 ├── go.sum                   # Хеши зависимостей
+├── .ait.toml                # Горячая перезагрузка
 └── taskfile.yaml            # Автоматизация задач
 ```
 
